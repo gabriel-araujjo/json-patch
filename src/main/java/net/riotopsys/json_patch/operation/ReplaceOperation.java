@@ -3,6 +3,7 @@ package net.riotopsys.json_patch.operation;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 import com.google.gson.internal.LinkedTreeMap;
 import net.riotopsys.json_patch.JsonPath;
 
@@ -11,9 +12,11 @@ import java.util.Map;
 
 /**
  * Created by afitzgerald on 8/5/14.
+ * Replace operator class
  */
 public class ReplaceOperation extends AbsOperation {
 
+    @SerializedName("value")
     public JsonElement data;
 
     public ReplaceOperation(JsonPath path, JsonElement data) {
@@ -35,7 +38,7 @@ public class ReplaceOperation extends AbsOperation {
         if ( item.isJsonObject() ){
             JsonObject object = item.getAsJsonObject();
 
-            object.add( path.tail(), data );;
+            object.add( path.tail(), data );
 
         } else if ( item.isJsonArray() ){
 
